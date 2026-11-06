@@ -2,9 +2,10 @@ pipeline {
     agent { label 'linux-docker' }
 
     stages {
-        stage('Test') {
+        stage('Git Test') {
             steps {
-                sh 'docker --version'
+                sh 'git --version'
+                sh 'which git'
             }
         }
     }
