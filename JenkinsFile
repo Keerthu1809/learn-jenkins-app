@@ -2,10 +2,20 @@ pipeline {
     agent { label 'linux-docker' }
 
     stages {
-        stage('Git Test') {
+        stage('Build')
+            agent{
+                docker{
+                    image 'node:18-alpine'
+                }
             steps {
-                sh 'git --version'
-                sh 'which git'
+                sh '''
+                    ls -la
+                    node --version
+                    npm --version
+                    npm ci
+                    npm run build
+                '''
+                
             }
         }
     }
